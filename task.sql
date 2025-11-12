@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS ShopDB;
+
 CREATE DATABASE ShopDB;
 USE ShopDB;
 
@@ -9,7 +11,6 @@ CREATE TABLE Countries (
 
 CREATE TABLE WareHouses (
     ID INT,
-    WarehouseAmount INT,
     WarehouseName VARCHAR(50),
     WarehouseAddress VARCHAR(50),
     PRIMARY KEY (ID)
@@ -19,15 +20,16 @@ CREATE TABLE ProductInventory (
     ID INT,
     ProductName VARCHAR(50),
     WarehouseID INT,
+    WarehouseAmount INT,
     CountryID INT,
     FOREIGN KEY (CountryID) REFERENCES Countries(ID) ON DELETE NO ACTION,
     FOREIGN KEY (WarehouseID) REFERENCES WareHouses(ID) ON DELETE NO ACTION,
     PRIMARY KEY (ID)
 );
 
-INSERT INTO Countries (ID,Name)
+INSERT INTO Countries (ID, Name)
 	VALUES (1, 'Country1');
-INSERT INTO Countries (ID,Name)
+INSERT INTO Countries (ID, Name)
 	VALUES (2, 'Country2');
     
 INSERT INTO WareHouses (ID, WarehouseAmount, WarehouseName, WarehouseAddress)
